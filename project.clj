@@ -12,10 +12,10 @@
   :hooks [leiningen.cljsbuild]
 
   :cljsbuild
-  {:builds [{:source-paths ["src"]
+  {:builds [{:source-paths ["src/cljs"]
              :compiler
              {:output-to "js/main.js"
               :output-dir "out"
-              :main "simlab.core"
+              :main "simlab.alfa"
               :optimizations :none
               :pretty-print true}}]})
