@@ -2,7 +2,7 @@
   (:require
    [quil.core :as q :include-macros true]
    [quil.middleware :as m]))
-
+        
 (defn setup []
   ;; Set frame rate to 30 frames per second.
   (q/frame-rate 30)
@@ -41,9 +41,3 @@
   :update update-state
   :draw draw-state
   :middleware [m/fun-mode])
-
-
-
-
-
-
