@@ -6,13 +6,13 @@
 
 (defn plot-1 [a b]
   (ic/function-plot
-   (fn [x] (+ (* -2 x x x) (* 12 x x) (* -3 x) (- 12)))
+   (fn [x] (+ (* -0.5 x x x) (* 12 x x) (* -3 x) (- 12)))
    a b))
 
 
 (defn plot-2 [a b]
   (ic/function-plot
-   (fn [x] (+ (i/sin x) (- (i/cos x))))
+   (fn [x] (+ (* 3 (i/sin x)) x (- (* 5 (i/cos (* 1/8 x))))))
    a b))
 
 (defn expt [^long a ^long m]

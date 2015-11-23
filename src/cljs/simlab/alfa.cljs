@@ -10,32 +10,31 @@
   (q/color-mode :hsb)
   ;; setup function returns initial state. It contains
   ;; circle color and position.
-  {:x 100})
+  {:x -200})
 
 (defn update-state [state]
   ;; Update sketch state by changing circle color and position.
-  {:color (mod (+ (:color state) 0.7) 255)
-   :angle (+ (:angle state) 0.1)})
+  {:x (+ 1 (:x state))})
 
 (defn draw-state [state]
-  ;; Clear the sketch by filling it with light-grey color.
-  (q/background 240)
-  ; Set circle color.
-  (q/fill (:color state) 255 255)
+  ;; Set circle color.
+  (q/fill 150 255 255)
   ;; Calculate x and y coordinates of the circle.
-  (let [angle (:angle state)
-        x (* 150 (q/cos angle))
-        y (* 150 (q/sin angle))]
-    ;; Move origin point to the center of the sketch.
+  (let [{:keys [x]} state
+        scale -0.005
+        y (* scale (+ (* 0.005 x x x) (* -2 x x) (* 30 x) -100))]
     (q/with-translation [(/ (q/width) 2)
                          (/ (q/height) 2)]
       ;; Draw the circle.
-      (q/ellipse x y 100 100))))
+      (q/ellipse x y 2 2)
+      (q/ellipse y (* 5 x) 2 2)
+      (q/line -500 0 500 0)
+      (q/line 0 -300 0 300))))
 
 (q/defsketch simlab
   :host "simlab"
   ;; the size of the canvas
-  :size [1100 800]
+  :size [1100 600]
   ;; setup function called only once, during sketch initialization.
   :setup setup
   ;; update-state is called on each iteration before draw-state.
